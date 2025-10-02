@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+{% extends 'tareas/base.html' %}
+
+{% block title %}{{ object.titulo }}{% endblock %}
+
+{% block content %}
+<div class="detalle-tarea">
+    <h2>{{ object.titulo }}</h2>
+    <p><strong>Descripción:</strong> {{ object.descripcion }}</p>
+    <p><strong>Prioridad:</strong> {{ object.prioridad }}/10</p>
+    <p><strong>Vigente:</strong> 
+        {% if object.vigente %}
+            <span class="badge badge-success">Sí</span>
+        {% else %}
+            <span class="badge badge-danger">No</span>
+        {% endif %}
+    </p>
+    <p><strong>Fecha creación:</strong> {{ object.fecha_creacion|date:"d/m/Y H:i" }}</p>
+    <p><strong>Fecha límite:</strong> {{ object.fecha_limite|date:"d/m/Y"|default:"Sin fecha" }}</p>
+    
+    <a href="{% url 'tareas:tarea_update' object.pk %}" class="btn">✏️ Editar</a>
+    <a href="{% url 'tareas:tarea_delete' object.pk %}" class="btn btn-danger">🗑️ Eliminar</a>
+    <a href="{% url 'tareas:tarea_list' %}" class="btn">⬅️ Volver</a>
+</div>
+{% endblock %}
+</body>
+</html>

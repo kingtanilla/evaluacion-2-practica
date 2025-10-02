@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h1>Lista de Tareas</h1>
+<p><a href="{% url 'tareas:tarea_create' %}">➕ Nueva Tarea</a></p>
+<ul>
+{% for tarea in object_list %}
+    <li>
+        <a href="{% url 'tareas:tarea_detail' tarea.pk %}">{{ tarea.titulo }}</a>
+        - Prioridad: {{ tarea.prioridad }}
+        - <a href="{% url 'tareas:tarea_update' tarea.pk %}">Editar</a>
+        - <a href="{% url 'tareas:tarea_delete' tarea.pk %}">Eliminar</a>
+    </li>
+{% empty %}
+    <li>No hay tareas.</li>
+{% endfor %}
+</ul>
+</body>
+</html>

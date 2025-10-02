@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+{% extends 'tareas/base.html' %}
+
+{% block title %}Lista de Tareas{% endblock %}
+
+{% block content %}
+<h2>Lista de Tareas</h2>
+<p><a href="{% url 'tareas:tarea_create' %}" class="btn btn-success">➕ Nueva Tarea</a></p>
+<ul>
+{% for tarea in object_list %}
+    <li>
+        <strong><a href="{% url 'tareas:tarea_detail' tarea.pk %}">{{ tarea.titulo }}</a></strong>
+        <br>
+        Prioridad: {{ tarea.prioridad }} | 
+        {% if tarea.vigente %}
+            <span class="badge badge-success">Vigente</span>
+        {% else %}
+            <span class="badge badge-danger">No vigente</span>
+        {% endif %}
+        <br>
+        <a href="{% url 'tareas:tarea_update' tarea.pk %}">✏️ Editar</a> |
+        <a href="{% url 'tareas:tarea_delete' tarea.pk %}" style="color: red;">🗑️ Eliminar</a>
+    </li>
+{% empty %}
+    <li>No hay tareas.</li>
+{% endfor %}
+</ul>
+{% endblock %}
+</body>
+</html>

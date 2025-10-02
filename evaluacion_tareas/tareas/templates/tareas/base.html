@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Gestor de Tareas{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'tareas/css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>📋 Gestor de Tareas</h1>
+        <nav>
+            <a href="{% url 'tareas:tarea_list' %}">Inicio</a> |
+            <a href="{% url 'tareas:tarea_create' %}">Nueva Tarea</a> |
+            <a href="/admin/">Admin</a>
+        </nav>
+        <hr>
+    </header>
+    
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    
+    <footer>
+        <hr>
+        <p style="text-align: center; color: #888;">© 2025 Gestor de Tareas - Django</p>
+    </footer>
+</body>
+</html>

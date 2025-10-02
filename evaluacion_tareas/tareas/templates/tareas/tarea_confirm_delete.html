@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+{% extends 'tareas/base.html' %}
+
+{% block title %}Eliminar Tarea{% endblock %}
+
+{% block content %}
+<h2>¿Eliminar tarea "{{ object.titulo }}"?</h2>
+<p>Esta acción no se puede deshacer.</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">✔️ Confirmar eliminación</button>
+    <a href="{% url 'tareas:tarea_list' %}" class="btn">❌ Cancelar</a>
+</form>
+{% endblock %}
+</body>
+</html>

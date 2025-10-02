@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{ object.titulo }}</h1>
+<p><strong>Descripción:</strong> {{ object.descripcion }}</p>
+<p><strong>Prioridad:</strong> {{ object.prioridad }}</p>
+<p><strong>Vigente:</strong> {{ object.vigente }}</p>
+<p><strong>Fecha creación:</strong> {{ object.fecha_creacion }}</p>
+<p><strong>Fecha límite:</strong> {{ object.fecha_limite|default:"Sin fecha" }}</p>
+<p><a href="{% url 'tareas:tarea_list' %}">Volver</a></p>
+</body>
+</html>
